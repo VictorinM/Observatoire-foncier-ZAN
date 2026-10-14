@@ -1,0 +1,18 @@
+Etape 1. Le perimetre, les communes du Grand Avignon.
+
+1. Telecharger le fichier.
+Ouvre ce lien dans ton navigateur.
+https://geo.api.gouv.fr/epcis/248400251/communes?geometry=contour&format=geojson&fields=nom,code,population
+La page affiche du texte GeoJSON. Enregistre la page sous le nom
+communes_grand_avignon.geojson, dans le dossier data du projet.
+Au passage, verifie que tu vois bien Avignon, Le Pontet, Vedene, Villeneuve les Avignon, etc.
+Si ton navigateur ajoute .txt au nom, renomme le en .geojson.
+
+2. Creer la base.
+Dans pgAdmin, cree une base nommee observatoire_foncier.
+Puis ouvre et lance le script 01_creation_base.sql.
+
+3. Importer les communes.
+Suis le fichier 02_import_communes.txt.
+
+Quand c'est fait, dis moi, et on verifie ensemble puis on passe a la donnee numero 2, la consommation d'espaces.

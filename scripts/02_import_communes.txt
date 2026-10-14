@@ -1,0 +1,21 @@
+Import des communes du Grand Avignon dans PostGIS.
+
+Deux facons, choisis la plus simple pour toi.
+
+Facon 1, avec QGIS, la plus simple.
+1. Ouvre QGIS.
+2. Glisse le fichier data/communes_grand_avignon.geojson dans la carte.
+3. Ouvre le Gestionnaire de bases de donnees, menu Base de donnees.
+4. Connecte toi a ta base observatoire_foncier.
+5. Bouton Importer une couche, choisis la couche communes.
+6. Schema, referentiels. Table, communes. SRID de sortie, 2154.
+7. Coche creer un index spatial. Importe.
+
+Facon 2, en ligne de commande, avec l'invite OSGeo4W de QGIS.
+Remplace VOTRE_MDP par ton mot de passe PostgreSQL.
+
+ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=observatoire_foncier user=postgres password=VOTRE_MDP" "data/communes_grand_avignon.geojson" -nln referentiels.communes -nlt MULTIPOLYGON -t_srs EPSG:2154 -lco GEOMETRY_NAME=geom -lco FID=id -lco SPATIAL_INDEX=GIST -overwrite
+
+Verification apres import, dans pgAdmin ou le gestionnaire QGIS.
+SELECT count(*) FROM referentiels.communes;
+SELECT code, nom, population FROM referentiels.communes ORDER BY nom;
